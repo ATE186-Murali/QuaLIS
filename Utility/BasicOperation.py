@@ -15,6 +15,9 @@ def clickXpath(driver,xpath):
 def sendKeysXpath(driver,xpath,value):
     driver.find_element(By.XPATH,xpath).send_keys(value)
 
+def listOfElements(driver,xpath):
+   listOfElements= driver.find_elements(By.XPATH,xpath)
+   return listOfElements
 
 def clear(driver,xpath):
     driver.find_element(By.XPATH,xpath).clear()

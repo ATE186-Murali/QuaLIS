@@ -19,30 +19,15 @@ def launchBrowser():
 
 
 def launchLIMS():
-    actualResult=[]
-    result=[]
-
-    testCaseResult_ID001="UN-EXECUTED"
-    actualResult_ID001="UN-EXECUTED"
-
-    testCaseResult_ID002="UN-EXECUTED"
-    actualResult_ID002="UN-EXECUTED"
-
-    testCaseResult_ID003="UN-EXECUTED"
-    actualResult_ID003="UN-EXECUTED"
-
 
 
     try:
        launchBrowser()
+       print("launched the browser")
        driver.get("http://192.168.0.199:9091/QuaLISWeb/#/login")
 
        welcome=driver.find_element(By.XPATH,welcomeText).text
 
-
-
-       actualResult_ID001="Welcome message displayed"
-       testCaseResult_ID001="PASS"
 
        try:
            driver.find_element(By.XPATH, loginid).send_keys("cdolman")
@@ -85,23 +70,7 @@ def launchLIMS():
 
        actualResult_ID001 = "Welcome message displayed is not displayed"
 
-
-
-    result.append(testCaseResult_ID001)
-
-    result.append(testCaseResult_ID002)
-
-    result.append(testCaseResult_ID003)
-
-    actualResult.append(actualResult_ID001)
-
-    actualResult.append(actualResult_ID002)
-
-    actualResult.append(actualResult_ID003)
-
-    output=[result,actualResult]
-
-    return output
+    return webdriver
 
 def resultEntry():
     driver.find_element(By.XPATH,resultEntry()).text
