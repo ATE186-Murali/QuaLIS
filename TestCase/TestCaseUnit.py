@@ -12,5 +12,6 @@ testData.read("C:\\Users\\Administrator\\PycharmProjects\\nibsc\\TestData\\TestD
 driver=Login_A.launchLIMS()
 #TestCoverageUnit.unitAdd(driver,testData.get("Unit","unitAddName"),testData.get("Unit","unitAddDescription"))
 
+# TestCoverageUnit.unitEdit(driver,"driver","driver1")
 
-TestCoverageUnit.unitEdit(driver)
+TestCoverageUnit.unitDelete(driver,"driver1")

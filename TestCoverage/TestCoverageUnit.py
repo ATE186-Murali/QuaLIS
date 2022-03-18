@@ -113,32 +113,84 @@ def unitAdd(driver, name, description):
         Logging.logError("Tried to enter the Master Icon, It causes exception" + str(e))
 
 
-def unitEdit(driver):
+def unitEdit(driver,oldName,newName):
     print()
+
+    time.sleep(5)
     BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "masterIcon"))
 
     BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "baseMasterIcon"))
 
     BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "unitOfMeasurementIcon"))
 
+    unitNameList= driver.find_elements(By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[3]/div/div[1]/table/tbody/tr/td[1]")
 
-
-    a= driver.find_elements(By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[3]/div/div[1]/table/tbody/tr/td[1]")
-
-    print(str(len(a)))
-
-    b=0
-    for i in a:
-        print(b)
-        print(i.text)
-        b=b+1
+    editList= driver.find_elements(By.XPATH, "/html/body/div[1]/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[3]/div/div[1]/table/tbody/tr/td[1]")
 
 
 
+    unitNameLists=[]
 
-def unitDelete():
+    for i in unitNameList:
+        unitName=i.text
+        unitNameLists.append(unitName)
+
+
+
+    for i in unitNameLists:
+
+        if i==oldName:
+            index=unitNameLists.index(i)
+
+
+            edit=BasicOperation.clickXpath(driver,"(//span[@data-tip='Edit'])[" + str(index) + "]")
+
+    BasicOperation.clear(driver, configDriver.get("UnitOfMeasurement", "unitName"))
+
+    BasicOperation.sendKeysXpath(driver, configDriver.get("UnitOfMeasurement", "unitName"),newName)
+
+    BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "unitAddSubmit"))
+
+
+
+
+
+
+
+
+
+def unitDelete(driver,name):
     print()
 
+    time.sleep(5)
+    BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "masterIcon"))
+
+    BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "baseMasterIcon"))
+
+    BasicOperation.clickXpath(driver, configDriver.get("UnitOfMeasurement", "unitOfMeasurementIcon"))
+
+    unitNameList = driver.find_elements(By.XPATH,
+                                        "/html/body/div[1]/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[3]/div/div[1]/table/tbody/tr/td[1]")
+
+
+    unitDeleteLit=driver.find_elements(By.XPATH,"/html/body/div[1]/div/div[2]/div/div[2]/div/div/div/div[2]/div/div[3]/div/div[1]/table/tbody/tr/td[4]/a/span[2]")
+
+    unitNameLists = []
+
+    for i in unitNameList:
+        unitName = i.text
+        unitNameLists.append(unitName)
+
+    for i in unitNameLists:
+
+        if i == name:
+            index = unitNameLists.index(i)
+
+            unitDeleteLit[index].click()
+
+    time.sleep(3)
+
+    BasicOperation.clickXpath(driver,configDriver.get("UnitOfMeasurement", "UnitDeleteConfirmationOK"))
 
 def unitRefresh():
     print()

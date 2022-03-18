@@ -2,6 +2,7 @@ import time
 from configparser import ConfigParser
 
 from selenium import webdriver
+from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
 
 from Utility import Logging, BasicOperation
@@ -34,25 +35,29 @@ def launchLIMS():
             print("Link was hit")
 
             try:
-                BasicOperation.sendKeysXpath(driver, objectRepository.get("login", "loginid"),
-                                             configDriver.get("Credential", "loginid"))
+                # BasicOperation.sendKeysXpath(driver, objectRepository.get("login", "loginid"),
+                #                             configDriver.get("Credential", "loginid"))
+
+                #BasicOperation.sendKeysXpath(driver, objectRepository.get("login", "loginid"),Keys.RETURN)
+
                 Logging.logInfo("Entered Login id")
                 print("Entered Login id")
 
+                time.sleep(10)
+
                 try:
 
-                    time.sleep(4)
-                    BasicOperation.clickXpath(driver, objectRepository.get("login", "password"))
+                    #   BasicOperation.clickXpath(driver, objectRepository.get("login", "password"))
 
-                    BasicOperation.sendKeysXpath(driver, objectRepository.get("login", "password"),
-                                                 configDriver.get("Credential", "password"))
+                    # BasicOperation.sendKeysXpath(driver, objectRepository.get("login", "password"),
+                                                 #configDriver.get("Credential", "password"))
                     Logging.logInfo("Entered password id")
 
                     print("Entered password id")
 
                     try:
-                        time.sleep(3)
-                        BasicOperation.clickXpath(driver, objectRepository.get("login", "login"))
+
+                        #BasicOperation.clickXpath(driver, objectRepository.get("login", "login"))
                         Logging.logInfo("Clicked the login button")
 
                         print("Clicked the login button")
